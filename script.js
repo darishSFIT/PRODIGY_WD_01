@@ -1,79 +1,110 @@
-// script.js
+// Function to check if an element is in viewport
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
 
-document.addEventListener('DOMContentLoaded', function() {
-    const navbar = document.getElementById('navbar');
-    const navLinks = navbar.querySelectorAll('a');
-    const pages = document.querySelectorAll('.page');
-    const highlightBox = document.getElementById('highlight-box');
+// Function to add animation class when element is in viewport
+function addAnimationIfVisible() {
+    const elementsToAnimate = document.querySelectorAll('.line, .about, .contacts');
+    elementsToAnimate.forEach(element => {
+        if (isInViewport(element)) {
+            element.classList.add('animate');
+        }
+    });
+}
 
-    // Smooth scroll to section when clicking on navbar links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            scrollToSection(targetSection);
-            updateHighlightBox(this); // Update highlight box position
-        });
+// Check on initial page load
+document.addEventListener('DOMContentLoaded', addAnimationIfVisible);
+
+// Check again on scroll
+window.addEventListener('scroll', addAnimationIfVisible);
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     const input1 = document.querySelector('.input1');
+//     const input3 = document.querySelector('.input3');
+
+//     const observer = new IntersectionObserver(entries => {
+//         entries.forEach(entry => {
+//             if (entry.isIntersecting) {
+//                 entry.target.classList.add('animate');
+//             } else {
+//                 entry.target.classList.remove('animate');
+//             }
+//         });
+//     }, {
+//         threshold: 0.5 // Trigger when section is 50% visible
+//     });
+
+//     observer.observe(document.getElementById('contact')); // Observe the #contact section
+// });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // GSAP timeline for animations
+    let tl = gsap.timeline();
+
+    // Animation for #nav elements
+    tl.from("#nav h1, #nav ul li, #nav h2", {
+        y: -100,
+        delay: 1,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2
     });
 
-    // Function to scroll to a specific section
-    function scrollToSection(section) {
-        window.scrollTo({
-            top: section.offsetTop,
-            behavior: 'smooth'
-        });
-    }
+    // Animation for #left h1
+    tl.from("#left h1", {
+        x: -100,
+        delay: 1,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.3
+    });
 
-    // Update highlight box position based on active link
-    function updateHighlightBox(link) {
-        const linkRect = link.getBoundingClientRect();
-        highlightBox.style.width = `${linkRect.width}px`;
-        highlightBox.style.transform = `translateX(${linkRect.left}px)`;
-    }
+    // Animation for #right img
+    tl.from("#right img", {
+        scale: 0,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.1
+    });
 
-    // Fade in sections when they come into view
+    // GSAP ScrollTrigger for animating .box elements in .page2
+    gsap.from(".page2 .box", {
+        y: -100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.4,
+        scrollTrigger: {
+            trigger: ".page2",
+            start: "top center", // Animation starts when top of .page2 hits center of viewport
+            end: "bottom center", // Animation ends when bottom of .page2 hits center of viewport
+            scrub: true // Smooth animation
+        }
+    });
+
+    // Intersection Observer for .input1 and .input3 animations
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                const currentLinkId = `#${entry.target.id}`;
-                const currentLink = Array.from(navLinks).find(link => link.getAttribute('href') === currentLinkId);
-                updateHighlightBox(currentLink);
+                entry.target.classList.add('animate');
+            } else {
+                entry.target.classList.remove('animate');
             }
         });
     }, {
         threshold: 0.5 // Trigger when section is 50% visible
     });
 
-    pages.forEach(page => {
-        observer.observe(page);
-    });
-
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const navItems = document.querySelectorAll('#navbar ul li a');
-    const highlightBox = document.getElementById('highlight-box');
-
-    function updateHighlightBox(element) {
-        const rect = element.getBoundingClientRect();
-        const parentRect = element.parentNode.getBoundingClientRect();
-        highlightBox.style.width = `${rect.width}px`;
-        highlightBox.style.left = `${rect.left - parentRect.left}px`;
-    }
-
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            updateHighlightBox(this);
-        });
-        item.addEventListener('mouseover', function() {
-            updateHighlightBox(this);
-        });
-    });
-
-    // Highlight the first item by default on page load
-    if (navItems.length > 0) {
-        updateHighlightBox(navItems[0]);
-    }
+    observer.observe(document.querySelector('.input1'));
+    observer.observe(document.querySelector('.input3'));
 });

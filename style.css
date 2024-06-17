@@ -1,0 +1,405 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: "Fira Sans", sans-serif;
+}
+
+button{
+    transition:500ms;
+}
+
+button:hover{
+    transform: scale(1.02);
+    background-color: #4e6c56;
+}
+
+nav {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5%;
+    background-color: #333333;
+}
+
+nav .heading {
+    font-size: 30px;
+    font-weight: 700;
+    color: #e0e0e0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    padding: 8px 15px;
+    border-radius: 10px;
+    transition: 0.2s ease-in;
+}
+
+nav ul li a {
+    color: #e0e0e0;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+nav ul li:hover {
+    background-color: #555555;
+}
+
+nav ul li a:hover {
+    color: #e0e0e0;
+}
+
+nav .sideMenuButton {
+    font-size: 30px;
+    font-weight: bolder;
+    cursor: pointer;
+    display: none;
+}
+
+/* responsive navbar css */
+@media screen and (max-width: 600px) {
+    nav .sideMenuButton {
+        display: flex;
+    }
+
+    nav .navbar {
+        display: none;
+    }
+
+    .sideNavigationBar {
+        display: block !important;
+    }
+}
+
+.sideNavigationBar {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0%;
+    background-color: #333333;
+    overflow-x: hidden;
+    transition: 0.3s ease-in;
+    padding-top: 60px;
+    display: none;
+}
+
+.sideNavigationBar a {
+    padding: 8px 8px 8px 40px;
+    display: block;
+    font-size: 25px;
+    font-weight: 500;
+    color: #d1d1d1;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.sideNavigationBar a button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #333333;
+    font-size: 16px;
+    border-style: none;
+    font-weight: 700;
+}
+
+.sideNavigationBar a:hover {
+    color: #ffffff;
+}
+
+.sideNavigationBar .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+#home {
+    color:#333333;
+}
+
+.line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2% 5%;
+}
+
+.line .side1 {
+    padding-right: 50px;
+}
+
+.side1 h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+    color: #8cc099;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #9cb5a2;
+}
+
+.side1 button {
+    width: 200px;
+    padding: 12px 20px;
+    border-radius: 20px;
+    border-style: none;
+    background-color: #8cc099;
+    color: #121212;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: #8cc099;
+}
+
+/* Header content responsive */
+@media screen and (max-width: 980px) {
+    .side2 img {
+        width: 350px;
+    }
+
+    .side1 h1 {
+        font-size: 40px;
+    }
+
+    .line {
+        flex-direction: column;
+    }
+
+    .side1 button {
+        margin-bottom: 20px;
+    }
+}
+
+.about {
+    margin: 5%;
+}
+
+.about .content {
+    margin-bottom: 5%;
+}
+
+.about .title {
+    font-size: 40px;
+    font-weight: 600;
+    color: #e0e0e0;
+}
+
+.about .boxes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about .boxes .box {
+    width: 350px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    background-color: #333333;
+    color: #e0e0e0;
+}
+
+.about .boxes .box .topic {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.about .boxes .box p {
+    font-size: 17px;
+}
+
+@media screen and (max-width: 880px) {
+    .about .boxes {
+        flex-direction: column;
+    }
+
+    .about .boxes .box {
+        margin: 20px 0;
+    }
+}
+
+.contacts {
+    margin: 5%;
+}
+
+.contacts .title {
+    font-size: 40px;
+    font-weight: 600;
+    color: #e0e0e0;
+}
+
+.contactMenu {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.contactMenu .input1,
+.contactMenu .input3 {
+    width: 45%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    background-color: #333333;
+    color: #e0e0e0;
+}
+
+.input1 .label1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #8cc099;
+}
+
+.input1 .input2 input {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border-style: none;
+    width: 90%;
+    background-color: #222222;
+    color: #e0e0e0;
+}
+
+.input1 .button button {
+    width: 50%;
+    padding: 12px 20px;
+    border-radius: 20px;
+    border-style: none;
+    background-color: #8cc099;
+    color: #121212;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+.input3 .rightside1 .title1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0;
+    color: #8cc099;
+}
+
+.input3 .rightside1 .content1 {
+    margin-bottom: 20px;
+    color: #e0e0e0;
+}
+
+/* Footer */
+footer .footer {
+    text-align: center;
+    margin-top: 80px;
+    padding: 15px;
+    background-color: #333333;
+    color: #e0e0e0;
+}
+
+footer .footer a {
+    text-decoration: none;
+    color: #8cc099;
+}
+
+
+/* Initial state before animation */
+.line, .about, .contacts {
+    opacity: 0;
+    transform: translateY(-20px); /* Start slightly above */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Animation triggered by adding a class */
+.line.animate, .about.animate, .contacts.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Specific animations for each element */
+
+
+.side1, .side2 {
+    animation: slideFromTop 1s ease forwards;
+}
+
+#box1 {
+    animation: slideFromLeft 2s ease forwards;
+}
+
+#box2 {
+    animation: fadeIn 3s ease forwards;
+}
+
+#box3 {
+    animation: slideFromRight 2s ease forwards;
+}
+
+.input1 {
+    animation: slideFromLeft 1s ease forwards;
+}
+
+.input3 {
+    animation: slideFromRight 1s ease forwards;
+}
+
+@keyframes slideFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* Animation for top-to-bottom entry */
+@keyframes slideFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
