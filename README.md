@@ -1,1 +1,1 @@
-A responsive Landing page made using HTML/CSS and JavaScript. Completed Task 1 of my Web Dev Internship
+Prodigy Infotech Web Development Internship Task 1 Comleted! Creation of a responsive Landing page made using HTML/CSS and JavaScript.
